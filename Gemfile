@@ -38,3 +38,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bitcoin-ruby'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0.0'
+end

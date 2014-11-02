@@ -1,7 +1,4 @@
 class Address < ActiveRecord::Base
-  belongs_to :address
+  belongs_to :user
   
-  def create
-    
-  end
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       namespace :users do
         get 'index'
         post 'register'
+        get ':phone_number', action: 'show'
       end
     end
   end

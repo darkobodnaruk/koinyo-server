@@ -11,23 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029220128) do
+ActiveRecord::Schema.define(version: 20141102192723) do
 
   create_table "addresses", force: true do |t|
     t.string  "address"
     t.string  "privkey"
     t.string  "pubkey"
     t.boolean "server_managed"
+    t.integer "user_id"
   end
 
   create_table "tx_outputs", force: true do |t|
-    t.integer "transaction_id"
+    t.integer "txout_id"
+    t.integer "indexin"
+    t.integer "txin_id"
+    t.integer "indexout"
     t.integer "address_id"
     t.integer "amount"
   end
 
+  create_table "txs", force: true do |t|
+    t.integer "target_address_id"
+  end
+
+  add_index "txs", ["target_address_id"], name: "index_txs_on_target_address_id"
+
   create_table "users", force: true do |t|
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.string   "name"
     t.string   "access_token"
     t.string   "confirmation_code"
