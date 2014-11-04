@@ -1,5 +1,6 @@
 class Tx < ActiveRecord::Base
-  has_many :tx_outputs
-  has_many :tx_inputs
+  self.table_name = "txs"
 
+  has_many :tx_outputs, foreign_key: :txin_id
+  has_many :tx_inputs, foreign_key: :txout_id
 end

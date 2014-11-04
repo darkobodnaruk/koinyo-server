@@ -43,7 +43,6 @@ describe Api::V1::UsersController, :type => :request do
   describe "GET <phone_number>" do
     it "gets user by phone_number" do
       @user = FactoryGirl.create(:user)
-      puts "@user: #{@user}"
       @params = {access_token: @user.access_token}
 
       get "api/v1/users/#{@user.phone_number}", @params

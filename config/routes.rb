@@ -7,11 +7,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # resources :users do
       namespace :users do
         get 'index'
         post 'register'
         get ':phone_number', action: 'show'
+      end
+
+      namespace :txs do
+        get '/', action: 'index'
       end
     end
   end

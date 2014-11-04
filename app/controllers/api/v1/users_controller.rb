@@ -4,8 +4,10 @@ module Api
     INTL_PHONE_NUM_REGEX = /^\+?[1-9]{1}[0-9]{7,11}$/
 
     class UsersController < ApplicationController
+      before_action :require_access_token, except: [:register]
+
       def index
-        render json: {message: "test"}
+        render json: {status: "test"}
       end
 
       def register
@@ -39,6 +41,8 @@ module Api
       end
 
       def show
+        unless user_params.include?('access_token') && User.
+
         @user = User.includes(:addresses).find_by(phone_number: user_params['phone_number'])
         if @user
           # KLUDGE: converting @user to json and back to ruby just tu include addresses. there's got to be a better way.
@@ -52,6 +56,7 @@ module Api
         def user_params
           params.permit(:phone_number, :address)
         end
+
     end
   end
 end
