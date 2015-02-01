@@ -11,7 +11,7 @@ module Api
       end
 
       def register
-        puts("user_params: #{user_params}")
+        # puts("user_params: #{user_params}")
 
         unless user_params.include?('phone_number') and user_params.include?('address')
           render json: {status: "missing param address / phone_number"}
@@ -41,21 +41,30 @@ module Api
       end
 
       def show
-        unless user_params.include?('access_token') && User.
+        # unless user_params.include?('access_token') && User.
 
         @user = User.includes(:addresses).find_by(phone_number: user_params['phone_number'])
-        if @user
-          # KLUDGE: converting @user to json and back to ruby just tu include addresses. there's got to be a better way.
-          render json: {status: "ok", user: JSON.parse(@user.to_json(include: [:addresses]))}
-        else
-          render json: {status: "user not found"}, status: 404
+        if @user.nil?
+          @user = User.create(user_params)
+          @user.addresses << Address.create
         end
+        
+        # KLUDGE: converting @user to json and back to ruby just to include addresses. there's got to be a better way.
+        render json: {status: "ok", user: JSON.parse(@user.to_json(include: [:addresses]))}
+
+        # if @user
+        #   # KLUDGE: converting @user to json and back to ruby just to include addresses. there's got to be a better way.
+        #   render json: {status: "ok", user: JSON.parse(@user.to_json(include: [:addresses]))}
+        # else
+        #   render json: {status: "user not found"}, status: 404
+        # end
       end
 
       private
-        def user_params
-          params.permit(:phone_number, :address)
-        end
+
+      def user_params
+        params.permit(:phone_number, :address)
+      end
 
     end
   end

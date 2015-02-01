@@ -19,5 +19,10 @@ module KoinyoServer
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    require 'bitcoin'
+    Bitcoin.network = :testnet3
+    config.insight_api_url = "http://kojnd.bodnaruk.com:3001/api"
+    config.min_tx_fee = 0.0001
   end
 end

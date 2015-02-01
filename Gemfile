@@ -39,8 +39,11 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bitcoin-ruby'
+gem 'rest-client'
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'guard'
+  gem 'guard-rspec'
 end

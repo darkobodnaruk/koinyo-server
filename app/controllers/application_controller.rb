@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
         # puts "found access_token"
         session[:access_token] = params["access_token"]
       else
-        puts "params.include: #{params.include?('access_token')}"
-        puts "access_token: #{params['access_token']}"
-        puts "user? #{User.find_by(access_token: params['access_token'])}"
-        puts "users: #{User.all.to_a}"
+        # puts "params.include: #{params.include?('access_token')}"
+        # puts "access_token: #{params['access_token']}"
+        # puts "user? #{User.find_by(access_token: params['access_token'])}"
+        # puts "users: #{User.all.to_a}"
         render json: {status: "unauthorized"}, status: 401
       end
     end

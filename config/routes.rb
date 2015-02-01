@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
       namespace :txs do
         get '/', action: 'index'
+        get '/utxo', action: 'utxo'
+        post 'server_managed'
       end
     end
   end
